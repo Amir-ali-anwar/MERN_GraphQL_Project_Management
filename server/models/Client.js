@@ -11,7 +11,7 @@ const ClientSchema = new mongoose.Schema({
     require: [true, "Please provide the email"],
     validate: {
       validator: validator.isEmail,
-      message: "Please Provide the valid email",
+      message: "Please Provide the valid email format",
     },
   },
   phone: {
