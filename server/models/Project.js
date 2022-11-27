@@ -12,9 +12,10 @@ const projectSchema = new mongoose.Schema({
   status:{
     enum:[]
   },
-  clientid:{
+  clientId:{
     type:mongoose.Schema.Types.ObjectId,
     ref:'Client'
   }
 });
-module.export = mongoose.model("project", projectSchema);
+const project = mongoose.model("project", projectSchema);
+export default project
