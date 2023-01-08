@@ -10,7 +10,8 @@ const projectSchema = new mongoose.Schema({
     require: [true, "Please provide the description"],
   },
   status:{
-    enum:[]
+    type:String,
+    enum: ['Not Started', 'In Progress', 'Completed'],
   },
   clientId:{
     type:mongoose.Schema.Types.ObjectId,
