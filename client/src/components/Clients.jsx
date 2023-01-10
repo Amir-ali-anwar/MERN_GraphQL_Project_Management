@@ -10,11 +10,28 @@ query getClients {
   }
 }
 `
-const clients = () => {
+const Clients = () => {
   const {data,loading,error}= useQuery(GET_Clients)
+  if(loading) return <p>Loading....</p>
+  if(error) return  <p>Something, went wrong</p>
   return (
-    <div>clients</div>
+   <>
+   {
+    !loading && !error &&(
+      <table className='table table-striped'>
+         <thead>
+            <tr>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Phone</th>
+              <th></th>
+            </tr>
+          </thead>
+      </table>
+    )
+   }
+   </>
   )
 }
 
-export default clients
+export default Clients
