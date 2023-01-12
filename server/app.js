@@ -12,11 +12,14 @@ const app = express();
 app.use(express.json());
 app.use(morgan('tiny'));
 app.use(cors());
-app.use("/graphql",graphqlHTTP({
-  schema,
-   graphiql: true,
-  graphiql:process.env.NODE_ENV==='development'
-}));
+app.use(
+  '/graphql',
+  graphqlHTTP({
+    schema,
+    graphiql: process.env.NODE_ENV === 'development',
+  })
+);
+  
 const PORT = process.env.port || 4000;
 
 const start = async () => {
