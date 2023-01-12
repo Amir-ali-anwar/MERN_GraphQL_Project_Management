@@ -25,12 +25,12 @@ const Clients = () => {
               <th>Name</th>
               <th>Email</th>
               <th>Phone</th>
-              <th></th>
+              <th>Delete</th>
             </tr>
           </thead>
           <tbody>
             {data?.clients.map((client) => (
-              <ClientRow  key={client.id}/>
+              <ClientRow  key={client.id} {...client}/>
             ))}
           </tbody>
         </table>
