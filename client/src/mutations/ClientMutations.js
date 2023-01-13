@@ -1,7 +1,7 @@
 import { gql } from "@apollo/client";
 
 const DELETE_CLIENTS = gql`
-  mutation deleteClients($id: id) {
+  mutation deleteClients($id:ID!) {
     deleteClient(id: $id) {
       id
       name
