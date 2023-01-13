@@ -11,3 +11,13 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+.btn-secondary {
+  background-color: #7430f9;
+}
+.icon {
+  margin-right: 5px;
+}
+.btn-secondary:hover {
+  background-color: #7430f9;
+  opacity: 0.9;
+}
