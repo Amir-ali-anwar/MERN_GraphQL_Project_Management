@@ -1,9 +1,36 @@
 import { useState } from "react";
 import { FaUser } from "react-icons/fa";
+import { useMutation } from '@apollo/client';
+import {GET_CLIENTS} from '../queries/clientQueries'
+import {ADD_CLIENTS} from '../mutations/ClientMutations'
 const AddClientModal = () => {
   const [email, SetEmail] = useState("");
   const [name, SetName] = useState("");
   const [phone, SetPhone] = useState("");
+  const [addClient] =useMutation(ADD_CLIENTS,{
+    variables:{name,email,phone},
+    update(cache,{data:{addClient}}){
+      const {clients}= cache.readQuery({query:GET_CLIENTS})
+      cache.writeQuery({
+        query:GET_CLIENTS,
+        data:{clients:[...clients,addClient]}
+      })
+    }
+  })
+  const onSubmit = (e) => {
+    e.preventDefault();
+
+    if (name === '' || email === '' || phone === '') {
+      return alert('Please fill in all fields');
+    }
+
+    addClient(name, email, phone);
+
+    SetName('');
+    SetEmail('');
+    SetPhone('');
+  };
+
   return (
     <>
       <button
@@ -37,7 +64,7 @@ const AddClientModal = () => {
               ></button>
             </div>
             <div className="modal-body">
-              <form action="">
+              <form action="" onSubmit={onSubmit}>
                 <div className="mb-3">
                   <label className="form-label">Name</label>
                   <input
