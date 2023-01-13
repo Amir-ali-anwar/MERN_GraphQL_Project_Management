@@ -150,7 +150,7 @@ const mutations = new GraphQLObjectType({
         description: { type: new GraphQLNonNull(GraphQLString) },
         status: {
           type: new GraphQLEnumType({
-            name: "ProjectStatus",
+            name: "ProjectStatusUpdate",
             values: {
               new: { value: "Not Started" },
               progress: { value: "In Progress" },
@@ -177,6 +177,6 @@ const mutations = new GraphQLObjectType({
 });
 const query = new GraphQLSchema({
   query: RootQuery,
-  mutations,
+  mutation: mutations,
 });
 export default query;
