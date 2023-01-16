@@ -17,12 +17,15 @@ const AddProjectModal = () => {
       return alert("Please fill in all fields");
     }
   };
-  if (loading) return <Spinner />;
-  if (error) return <p>Something, went wrong</p>;
+  // if (loading) return <Spinner />;
+  // if (error) return <p>Something, went wrong</p>;
 
   return (
     <>
-      <button
+    
+    {!loading && !error && (
+        <>
+        <button
         type="button"
         className="btn btn-primary"
         data-bs-toggle="modal"
@@ -119,7 +122,10 @@ const AddProjectModal = () => {
           </div>
         </div>
       </div>
-    </>
+      </>
+      )}
+   </>
+     
   );
 };
 
