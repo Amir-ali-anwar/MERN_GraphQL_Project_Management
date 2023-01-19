@@ -1,5 +1,5 @@
 import React from 'react'
-import { AddClientModal, AddProjectModal,Clients } from "../components";
+import { AddClientModal, AddProjectModal,Clients,Projects } from "../components";
 
 const Home = () => {
   return (
@@ -8,7 +8,7 @@ const Home = () => {
       <AddClientModal />
       <AddProjectModal />
     </div>
-     {/* <Projects /> */}
+     <Projects />
     <hr />
     <Clients />
     </>
