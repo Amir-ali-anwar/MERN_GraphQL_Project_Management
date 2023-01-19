@@ -8,7 +8,6 @@ const Project = () => {
   const {loading,data,error}= useQuery(GET_PROJECT,{variables:{id}})
   if (loading) return <Spinner />;
   if (error) return <p>Something Went Wrong</p>;
-  console.log(data);
   return (
    <>
    {
