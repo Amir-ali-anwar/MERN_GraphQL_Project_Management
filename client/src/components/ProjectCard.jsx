@@ -1,7 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
 const ProjectCard = ({name,id,status}) => {
-  console.log(id);
   return (
     <div className='col-md-6'>
       <div className='card mb-3'>
