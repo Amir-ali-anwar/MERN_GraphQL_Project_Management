@@ -3,22 +3,39 @@ import { FaList } from "react-icons/fa";
 import { useQuery, useMutation } from "@apollo/client";
 import Spinner from "./Spinner";
 import { GET_CLIENTS } from "../queries/clientQueries";
-
+import { ADD_PROJECT } from "../mutations/ProjectMutations";
+import { GET_PROJECTS } from '../queries/projectQueries';
 const AddProjectModal = () => {
   const { data, loading, error } = useQuery(GET_CLIENTS);
 
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [clientId, setClientId] = useState("");
+  console.log("clientId",clientId);
   const [status, setStatus] = useState("new");
+  const [addProject]= useMutation(ADD_PROJECT,{
+    variables:{ name, description, clientId, status },
+    update(cache,{data:{addProject}}){
+      const { projects } = cache.readQuery({ query: GET_PROJECTS });
+      cache.writeQuery({
+        query: GET_PROJECTS,
+        data: { projects: [...projects, addProject] },
+      });
+    }
+  })
   const onSubmit = (e) => {
     e.preventDefault();
     if (name === "" || description === "" || status === "") {
       return alert("Please fill in all fields");
     }
+    addProject(name, description, clientId, status);
+    setDescription('')
+    setDescription('')
+    setStatus('')
+
   };
-  // if (loading) return <Spinner />;
-  // if (error) return <p>Something, went wrong</p>;
+  if (loading) return <Spinner />;
+  if (error) return <p>Something, went wrong</p>;
 
   return (
     <>
@@ -93,13 +110,15 @@ const AddProjectModal = () => {
                 <div className="mb-3">
                   <label className="form-label">Client</label>
                   <select
-                    id="client"
+                    id="clientId"
                     className="form-select"
+                    value={clientId}
+                    onChange={(e) => setClientId(e.target.value)}
                   >
                     <option value="">Select Client</option>
                     {data?.clients?.length ? (
                       data?.clients?.map((client) => (
-                        <option value="progress" key={client.id}>
+                        <option key={client.id} value={client.id}>
                           {client.name}
                         </option>
                       ))
