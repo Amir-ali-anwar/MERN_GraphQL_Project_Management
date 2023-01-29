@@ -1,5 +1,5 @@
 import "./App.css";
-import { Header, Clients, AddClientModal, AddProjectModal } from "./components";
+import { Header} from "./components";
 import { ApolloProvider, ApolloClient, InMemoryCache } from "@apollo/client";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import {Home, Project, NotFound} from './Pages'
