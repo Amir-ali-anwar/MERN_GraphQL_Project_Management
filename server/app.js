@@ -19,7 +19,10 @@ app.use(
     graphiql: process.env.NODE_ENV === 'development',
   })
 );
-  
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  next();
+});
 const PORT = process.env.port || 4000;
 
 const start = async () => {
